@@ -1,11 +1,45 @@
-version: '3'
+version: '3.9'
 
 services:
-  web:
-    build: .
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    container_name: music_service
+  postgres:
+    image: postgres:14.1-alpine
+    expose:
+      - '5432'
+    ports:
+      - '5432:5432'
     volumes:
-      - .:/music_service
+      - cloneflix-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - cloneflix-network
+
+  cloneflix:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "python manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - ./.env
+    volumes:
+      - .:/app/
     ports:
       - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - cloneflix-network
+
+volumes:
+  cloneflix-data:
+
+networks:
+  cloneflix-network:

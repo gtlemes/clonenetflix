@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "cloneflix"
+version = "0.1.0"
+description = ""
+authors = ["Gustavo Oliveira"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+psycopg2-binary = "^2.9.8"
+dj-database-url = "^2.1.0"
+django-allauth = "^0.57.0"
+pillow = "^10.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
