@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <section class='bg-primary_black min-h-screen py-20 md:py-32 flex-col flex items-center' style="background-image: url('assets/background_netflix.jpg');">
+        <div class="flex flex-wrap justify-center  w-10/12  md:w-6/12">
+            <form class="w-full md:w-8/12 bg-gray-900 p-5 rounded-lg" method="POST" enctype="multipart/form-data" id="profile-form">{% csrf_token %}
+                <h1 class="text-4xl text-center text-gray-100 font-medium">
+                    Crie um perfil
+                </h1>
+                <div class="my-4"> 
+                    <label class='text-lg text-gray-200 font-medium mb-3'>
+                        Nome do perfil
+                    </label>
+                    <input required class="p-2 bg-gray-500 rounded-sm text-gray-200 outline-none block w-full" type="text" name="name" id="id_name" placeholder="Nome do perfil">
+                </div>
+                <div class="my-4"> 
+                    <label class='text-lg text-gray-200 font-medium mb-3'>
+                        Imagem de Perfil
+                    </label>
+                    <input onchange="validarImagem()" class="bg-gray-500 text-gray-200" type="file" name="avatar" id="id_avatar" accept="image/*">
+                </div>
+                <div class="flex justify-center items-center">
+                    <button class="px-4 py-2 rounded-md outline-none bg-primary_red text-gray-100" type="submit">Crie seu perfil</button>
+                </div>
+            </form> 
+        </div>
+    </section>
+
+    <script>
+        function validarImagem() {
+            var inputImagem = document.getElementById('id_avatar');
+            var arquivo = inputImagem.files[0];
+            var img = new Image();
+
+            img.onload = function() {
+                var largura = this.width;
+                var altura = this.height;
+
+                var LARGURA_DESEJADA = 320; 
+                var ALTURA_DESEJADA = 320; 
+
+                if (largura > LARGURA_DESEJADA || altura > ALTURA_DESEJADA) {
+                    alert('A imagem deve ter no máximo ' + LARGURA_DESEJADA + 'x' + ALTURA_DESEJADA + ' pixels.');
+                    inputImagem.value = '';
+                }
+
+                if (largura < LARGURA_DESEJADA || altura < ALTURA_DESEJADA) {
+                alert('A imagem deve ter no mínimo ' + LARGURA_DESEJADA + 'x' + ALTURA_DESEJADA + ' pixels.');
+                // Limpar o input de imagem, se desejar
+                inputImagem.value = '';
+            }
+            };
+
+            img.src = URL.createObjectURL(arquivo);
+        }
+    </script>
+{% endblock content %}

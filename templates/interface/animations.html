@@ -1,0 +1,186 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Tuttaflix - assistir séries online, assistir filmes online</title>
+  <link rel="stylesheet" href="{% static 'css/movie.css' %}">
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <header>
+      <div class="netflixLogo">
+        <a id="logo" href="/"><img src="{% static 'assets/netflix.png' %}" alt="Logo Image"></a>
+      </div>      
+      <nav class="main-nav">                
+        <a href="/">Inicio</a>
+        <a href="{% url 'movie:movies-all' %}">Filmes</a>
+        <a href="{% url 'movie:series-all' %}">Séries</a>
+        <a href="{% url 'movie:animations-all' %}">Kids</a>
+        <a href="#">Minha lista</a>      
+      </nav>
+      <nav class="sub-nav">
+        <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
+        <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>      
+        <a href="{% url 'account_logout' %}" class='bg-primary_red py-1 px-3 text-white md:text-lg rounded-md'>
+          Sair</a>
+      </nav>      
+    </header>
+
+    <section class="main-container" >
+      <div class="location" id="home">
+          <h1 id="trending">Em Alta</h1>
+          <div class="box">
+            {% for movie in trending_kids %}
+            <a href="{% url 'movie:movie-detail' movie_id=movie.uuid %}">
+                <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                    <img src="{{movie.video.first.image.url}}" class="w-full h-full " alt="">
+                </div>
+            </a>
+            {% endfor %}
+      </div>
+      
+
+      <h1 id="action-adventure">Ação</h1>
+      <div class="box">
+        {% for movie in action %}
+            <a href="{% url 'movie:movie-detail' movie_id=movie.uuid %}">
+                <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                    <img src="{{movie.video.first.image.url}}" class="w-full h-full " alt="">
+                </div>
+            </a>
+            {% endfor %}
+      </div>
+
+      <h1 id="action-adventure">Aventura</h1>
+      <div class="box">
+        {% for movie in adventure %}
+            <a href="{% url 'movie:movie-detail' movie_id=movie.uuid %}">
+                <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                    <img src="{{movie.video.first.image.url}}" class="w-full h-full " alt="">
+                </div>
+            </a>
+            {% endfor %}
+      </div>
+
+      
+      <h1 id="comedy">Comédia</h1>
+      <div class="box">
+        {% for movie in comedy %}
+            <a href="{% url 'movie:movie-detail' movie_id=movie.uuid %}">
+                <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                    <img src="{{movie.video.first.image.url}}" class="w-full h-full " alt="">
+                </div>
+            </a>
+            {% endfor %}
+      </div>
+      
+
+      <h1 id="science-fiction">Fantásia</h1>
+      <div class="box">
+        {% for movie in fantasy %}
+        <a href="{% url 'movie:movie-detail' movie_id=movie.uuid %}">
+            <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                <img src="{{movie.video.first.image.url}}" class="w-full h-full " alt="">
+            </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <h1 id="science-fiction">Família</h1>
+      <div class="box">
+        {% for movie in family %}
+        <a href="{% url 'movie:movie-detail' movie_id=movie.uuid %}">
+            <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                <img src="{{movie.video.first.image.url}}" class="w-full h-full " alt="">
+            </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <h1 id="animes">Animes</h1>
+      <div class="box">
+        {% for movie in animes %}
+        <a href="{% url 'movie:movie-detail' movie_id=movie.uuid %}">
+            <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                <img src="{{movie.video.first.image.url}}" class="w-full h-full " alt="">
+            </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <h1 id="animations">Animações</h1>
+      <div class="box">
+        {% for movie in animations %}
+        <a href="{% url 'movie:movie-detail' movie_id=movie.uuid %}">
+            <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                <img src="{{movie.video.first.image.url}}" class="w-full h-full " alt="">
+            </div>
+        </a>
+        {% endfor %}
+      </div>
+      
+      <h1 id="musical">Musicais</h1>
+      <div class="box">
+        {% for movie in mystery %}
+        <a href="{% url 'movie:movie-detail' movie_id=movie.uuid %}">
+            <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                <img src="{{movie.video.first.image.url}}" class="w-full h-full " alt="">
+            </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <h1 id="drama">Drama</h1>
+      <div class="box">
+        {% for movie in drama %}
+        <a href="{% url 'movie:movie-detail' movie_id=movie.uuid %}">
+            <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                <img src="{{movie.video.first.image.url}}" class="w-full h-full " alt="">
+            </div>
+        </a>
+        {% endfor %}
+      </div>
+      
+      <h1 id="classics">Clássicos</h1>
+      <div class="box">
+        {% for movie in classics %}
+        <a href="{% url 'movie:movie-detail' movie_id=movie.uuid %}">
+            <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                <img src="{{movie.video.first.image.url}}" class="w-full h-full " alt="">
+            </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <h1 id="tvshows">Ficção Científica</h1>
+      <div class="box">
+        {% for movie in sc_fic %}
+        <a href="{% url 'movie:movie-detail' movie_id=movie.uuid %}">
+            <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                <img src="{{movie.video.first.image.url}}" class="w-full h-full " alt="">
+            </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <h1 id="action-adventure">Ação e Aventura</h1>
+      <div class="box">
+        {% for movie in action_adventure %}
+            <a href="{% url 'movie:movie-detail' movie_id=movie.uuid %}">
+                <div class=" h-40 m-4  bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-40">
+                    <img src="{{movie.video.first.image.url}}" class="w-full h-full " alt="">
+                </div>
+            </a>
+            {% endfor %}
+      </div>
+
+{% block content %}
+    
+{% endblock content %}
+</body>
+</html>

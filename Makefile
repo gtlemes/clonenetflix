@@ -22,3 +22,6 @@ migrate:
 
 makemigrations:
 	docker-compose exec cloneflix python manage.py makemigrations
+
+createsuperuser:
+	docker-compose exec cloneflix python manage.py createsuperuser

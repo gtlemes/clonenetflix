@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <main class='bg-primary_black min-h-screen w-full'>
+        <section class="h-screen relative bg-no-repeat pb-8 pl-6 flex justify-end items-end bg-cover" style="background-image: url('{{ movie.video.first.banner.url }}');">
+            <div>
+                <h2 class="text-6xl font-semibold text-white my-4" style="font-weight: bolder;">
+                    {{ movie.title }}
+                </h2>
+
+                <div class="flex my-4">
+                    <div class=" h-80 m-4  w-320">
+                        <span class="ml-3 font-medium">{{ movie.runtime }}</span>
+                    </div>
+
+                    <div class=" h-80 m-4  w-320">
+                        <span class="ml-3 font-medium">{{ movie.get_classification_display }}</span>
+                    </div>
+
+                    <div class=" h-80 m-4  w-320">
+                        <span class="ml-3 font-medium">{{ movie.release_year }}</span>
+                    </div>
+
+                    {% if movie.classification == 'Series' %}    
+                        <a href="{% url 'movie:play-movie' movie_id=movie.uuid %}" class="flex items-center bg-red py-2 px-5 rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection" viewBox="0 0 16 16">
+                                <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5z"/>
+                              </svg>
+                                <span class="ml-3 font-medium">
+                                    Episódios
+                                </span>
+                                {% endif %}
+                </div>
+
+                <p class=" w-11/12 md:w-5/12 font-semibold text-white my-4">
+                    {{movie.description}}
+                </p>
+                <div class="flex my-4">
+
+                    <a href="{% url 'movie:play-movie' movie_id=movie.uuid %}" class="flex items-center bg-red py-2 px-5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                          </svg>
+                        <span class="ml-3 font-medium">
+                            Assistir
+                        </span>
+                    </a>
+
+                    <a href="{% url 'movie:play-movie' movie_id=movie.uuid %}" class="flex items-center bg-red py-2 px-5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tv" viewBox="0 0 16 16">
+                            <path d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5M13.991 3l.024.001a1.46 1.46 0 0 1 .538.143.757.757 0 0 1 .302.254c.067.1.145.277.145.602v5.991l-.001.024a1.464 1.464 0 0 1-.143.538.758.758 0 0 1-.254.302c-.1.067-.277.145-.602.145H2.009l-.024-.001a1.464 1.464 0 0 1-.538-.143.758.758 0 0 1-.302-.254C1.078 10.502 1 10.325 1 10V4.009l.001-.024a1.46 1.46 0 0 1 .143-.538.758.758 0 0 1 .254-.302C1.498 3.078 1.675 3 2 3zM14 2H2C0 2 0 4 0 4v6c0 2 2 2 2 2h12c2 0 2-2 2-2V4c0-2-2-2-2-2"/>
+                          </svg>
+                        <span class="ml-3 font-medium">
+                            Trailer
+                        </span>
+
+                    <a href="#" class="flex items-center bg-red py-2 px-5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                            </svg>
+                         <span class="ml-3 font-medium">
+                            Minha lista
+                        </span>  
+                </div>
+            </div>
+
+        </section> 
+            <div class="p-8 w-10/12 relative" >
+                <h2 class="text-gray-500 text-lg font-medium mr-2">Elenco: </h2>
+                    <div class="w-11/12 md:w-5/12 font-semibold text-white my-4 ml-2">
+                        <span class="text-gray-100 text-lg font-medium">
+                            {{ movie.cast }}
+                        </span>
+                </div>
+
+                <div class="flex items-center">
+                    <h2 class="text-gray-500 text-lg font-medium mr-2">Gênero:&nbsp;</h2>
+                    <div class="w-11/12 md:w-5/12 font-semibold text-white my-4 ml-2 flex flex-wrap">
+                        {% for genre in movie.genre.all %}
+                            {% if forloop.first %}
+                                <span class="text-gray-100 text-lg font-medium">
+                                    {{ genre.genre }}
+                                </span>
+                            {% else %}
+                                <span class="text-gray-100 text-lg font-medium">
+                                    , {{ genre.genre }}
+                                </span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        
+
+            
+    </main>
+    <script>
+        const nav = document.querySelector('nav')
+
+        document.addEventListener("scroll",e=>{
+            
+            if(scrollY>200){
+                nav.classList.add('bg-gray-900')
+          
+            }else{
+                nav.classList.remove('bg-gray-900')
+                
+            }
+        })
+
+    </script>
+
+{% endblock content %}

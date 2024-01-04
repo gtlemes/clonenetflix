@@ -1,0 +1,242 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuttaflix - assistir séries online, assistir filmes online</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+
+
+<header class="showcase">
+    <div class="showcase-top">
+        <img src="{% static 'assets/netflix.png' %}" alt="" />
+        <span>
+        <a href="{% url 'account_login' %}" class="btn btn-rounded">Já é assinante?</a>
+    </div>
+    <div class="showcase-content">
+        <h1>Assine a Tuttaflix</h1>
+        <p>Assista em qualquer lugar. Cancelar a qualquer momento</p>
+        <a href="{% url 'account_signup' %}" class="btn btn-xl"
+            >Assista gratuitamente por 60 dias <i class="fas fa-chevron-right btn-icon"></i
+        ></a>
+    </div>
+</header>
+<section class="tabs">
+    <div class="container">
+        <div id="tab-1" class="tab-item tab-border">
+            <i class="fas fa-door-open fa-3x"></i>
+            <p class="hide-sm">Cancele a qualquer momento</p>
+        </div>
+        <div id="tab-2" class="tab-item">
+            <i class="fas fa-tablet-alt fa-3x"></i>
+            <p class="hide-sm">Assista onde quiser</p>
+        </div>
+        <div id="tab-3" class="tab-item">
+            <i class="fas fa-tags fa-3x"></i>
+            <p class="hide-sm">Escolha seu preço</p>
+        </div>
+    </div>
+</section>
+
+<section class="tab-content">
+    <div class="container">
+        <!-- Tab Content 1 -->
+        <div id="tab-1-content" class="tab-content-item show">
+            <div class="tab-1-content-inner">
+                <div>
+                    <p class="text-lg">
+                        Se você decidir que o Tuttaflix não é para você, não há problema. Sem compromisso.
+                        Cancele on-line a qualquer momento.
+                    </p>
+                    <a href="{% url 'account_signup' %}" class="btn btn-lg">Assista grátis por 60 dias</a>
+                </div>
+                <img src="https://i.ibb.co/J2xDJV7/tab-content-1.png" alt="" />
+            </div>
+        </div>
+
+        <!-- Tab Content 2 -->
+        <div id="tab-2-content" class="tab-content-item">
+            <div class="tab-2-content-top">
+                <p class="text-lg">
+                    Assista a programas de TV e filmes a qualquer hora e em qualquer lugar — personalizado para
+                    você.
+                </p>
+                <a href="{% url 'account_signup' %}" class="btn btn-lg">Assine agora!</a>
+            </div>
+            <div class="tab-2-content-bottom">
+                <div>
+                    <img src="https://i.ibb.co/DpdN7Gn/tab-content-2-1.png" alt="" />
+                    <p class="text-md">
+                        Assista na sua TV
+                    </p>
+                    <p class="text-dark">
+                        Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray.
+                    </p>
+                </div>
+                <div>
+                    <img src="https://i.ibb.co/R3r1SPX/tab-content-2-2.png" alt="" />
+                    <p class="text-md">
+                        Assista instantaneamente ou adicione para ver mais tarde
+                    </p>
+                    <p class="text-dark">
+                        Disponível para telefone e tablet, onde quer que você vá.
+                    </p>
+                </div>
+                <div>
+                    <img src="https://i.ibb.co/gDhnwWn/tab-content-2-3.png" alt="" />
+                    <p class="text-md">
+                        Use em seu computador
+                    </p>
+                    <p class="text-dark">
+                        Assista em tuttaflix.com
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content 3 -->
+        <div id="tab-3-content" class="tab-content-item">
+            <div class="text-center">
+                <p class="text-lg">
+                    Escolha um plano e assista tudo na Tuttaflix..
+                </p>
+                <a href="{% url 'account_signup' %}" class="btn btn-lg">Assine agora!</a>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Essencial</th>
+                        <th>Plus</th>
+                        <th>Premium</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1° pagamento após 60 dias de assinatura.</td>
+                        <td>R$10.99</td>
+                        <td>R$18.99</td>
+                        <td>R$24.99</td>
+                    </tr>
+                    <tr>
+                        <td>Qualidade</td>
+                        <td><i class="fas fa-times">HD</i></td>
+                        <td><i class="fas fa-check">Ultra HD</i></td>
+                        <td><i class="fas fa-check">4K-8K</i></td>
+                    </tr>
+                    <tr>
+                        <td>Reprodução</td>
+                        <td><i class="fas fa-times">1 tela</i></td>
+                        <td><i class="fas fa-times">2 telas</i></td>
+                        <td><i class="fas fa-check">5 telas</i></td>
+                    </tr>
+                    <tr>
+                        <td>Downloads Ilimitados</td>
+                        <td>Sim</td>
+                        <td>Sim</td>
+                        <td>Sim</td>
+                    </tr>
+                    <tr>
+                        <td>Acesso antecipado à lançamentos</td>
+                        <td><i class="fas fa-check">Não</i></td>
+                        <td><i class="fas fa-check">Sim</i></td>
+                        <td><i class="fas fa-check">Sim</i></td>
+                    </tr>
+                    <tr>
+                        <td>Contéudos em 3D</td>
+                        <td><i class="fas fa-check">Não</i></td>
+                        <td><i class="fas fa-check">Não</i></td>
+                        <td><i class="fas fa-check">Sim</i></td>
+                    </tr>
+                    <tr>
+                        <td>Plano TuttaGames</td>
+                        <td><i class="fas fa-check">Não</i></td>
+                        <td><i class="fas fa-check">Não</i></td>
+                        <td><i class="fas fa-check">Sim</i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>Tudo em um só Lugar! Isso é Tuttaflix!!</p>
+    <div class="footer-cols">
+        <ul>
+            <li><a>HBO Max</a></li>
+            <li><a>Amazon Prime Video</a></li>
+            <li><a>Disney</a></li>
+            <li><a>Globoplay</a></li>
+            <li><a>Netflix</a></li>
+        </ul>
+        <ul>
+            <li><a>Principais Lançamentos</a></li>
+            <li><a>Em Cartaz</a></li>
+            <li><a>Cinema em casa</a></li>
+            <li><a>Experiências memoráveis</a></li>
+        </ul>
+        <ul>
+            <li><a>Filmes</a></li>
+            <li><a>Séries</a></li>
+            <li><a>Documentários</a></li>
+            <li><a>Animações</a></li>
+        </ul>
+        <ul>
+            <li><a>Empresa Digital</a></li>
+            <li><a>Plataforma de streaming</a></li>
+            <li><a href="#">80.565.181/0001-32</a></li>
+            <li><a href="#">Since - 2023</a></li>
+        </ul>
+    </div>
+
+</footer>
+
+<script>
+    const tabItems = document.querySelectorAll('.tab-item');
+const tabContentItems = document.querySelectorAll('.tab-content-item');
+
+// Select tab content item
+function selectItem(e) {
+	// Remove all show and border classes
+	removeBorder();
+	removeShow();
+	// Add border to current tab item
+	this.classList.add('tab-border');
+	// Grab content item from DOM
+	const tabContentItem = document.querySelector(`#${this.id}-content`);
+	// Add show class
+	tabContentItem.classList.add('show');
+}
+
+// Remove bottom borders from all tab items
+function removeBorder() {
+	tabItems.forEach(item => {
+		item.classList.remove('tab-border');
+	});
+}
+
+// Remove show class from all content items
+function removeShow() {
+	tabContentItems.forEach(item => {
+		item.classList.remove('show');
+	});
+}
+
+// Listen for tab item click
+tabItems.forEach(item => {
+	item.addEventListener('click', selectItem);
+});
+
+</script>
+
+{% block content %}
+    
+{% endblock content %}
+</body>
+</html>

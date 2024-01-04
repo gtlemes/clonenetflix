@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<header class="min-h-screen w-full bg-black bg-opacity-75 showcase border-gray-600 border-b-8 flex justify-center py-20 bg-no-repeat" style="background-image: url('{% static 'assets/background_netflix.jpg' %}');">
+    <div class="z-10 h-full py-32 md:py-0 text-gray-100 w-6/12 flex items-center flex-col">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="flex flex-col items-center my-4" style="font-weight: bold;">
+                <img src="{{ profile.avatar.url }}" alt="{{ profile.name }}" class="w-32 h-32 rounded-full mb-2" >
+                <p>{{ profile.name }}</p>
+            </div>
+        
+            <div class="text-center mb-4">
+                <label for="id_name" class="block" style="font-weight: bold;">Nome do perfil:</label>
+                <input type="text" id="id_name" name="name" value="{{ profile.name }}" class="rounded-md px-2 py-1 border border-gray-300" style="color: black;">
+            </div>
+        
+
+            <div class="text-center mb-4">
+                <label for="id_avatar" class="block" style="font-weight: bold;">Trocar foto:</label>
+                <input type="file" id="id_avatar" name="avatar" accept="image/*" class="border border-gray-300" onchange="validarImagem()">
+            </div>
+
+            <button type="submit" class="block w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600" style="font-weight: bold; background-color: #ccc;">Salvar Alterações</button>
+        </form>
+
+        <form method="POST" action="{% url 'netflixapp:delete-profile' profile_id=profile.uuid %}">            
+            {% csrf_token %}
+            <button type="submit" class="block w-full mt-4 bg-gray-500 text-white py-2 rounded-md hover:bg-gray-600" style="font-weight: bold; background-color: #ccc;">Excluir Perfil</button>
+        </form>
+
+    </header>
+
+    <script>
+        function validarImagem() {
+            var inputImagem = document.getElementById('id_avatar');
+            var arquivo = inputImagem.files[0];
+            var img = new Image();
+    
+            img.onload = function() {
+                var largura = this.width;
+                var altura = this.height;
+    
+                var LARGURA_DESEJADA = 320;
+                var ALTURA_DESEJADA = 320;
+                
+    
+                if (largura > LARGURA_DESEJADA || altura > ALTURA_DESEJADA) {
+                    alert('A imagem deve ter no máximo ' + LARGURA_DESEJADA + 'x' + ALTURA_DESEJADA + ' pixels.');
+                    // Limpar o input de imagem, se desejar
+                    inputImagem.value = '';
+                }
+
+                if (largura < LARGURA_DESEJADA || altura < ALTURA_DESEJADA) {
+                alert('A imagem deve ter no mínimo ' + LARGURA_DESEJADA + 'x' + ALTURA_DESEJADA + ' pixels.');
+                // Limpar o input de imagem, se desejar
+                inputImagem.value = '';
+            }
+        };
+    
+            img.src = URL.createObjectURL(arquivo);
+        }
+    </script>       
+
+{% endblock content %}
